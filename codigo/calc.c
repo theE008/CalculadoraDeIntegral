@@ -58,11 +58,11 @@ double funcao_3 (double x) { return (x*x);}
 
 int main (void)
 {
-    double a = 0, b = 1;
+    double a = 0, b = 10;
 
-    double resposta = integrar (funcao_3, 7, a, b);
-
-    printf ("\nIntegral da funcao entre '%g' e '%g': %g\n", a, b, resposta);
+    printf ("Integral da funcao 1 entre '%g' e '%g': %g\n", a, b, integrar (funcao_1, 7, a, b));
+    printf ("Integral da funcao 2 entre '%g' e '%g': %g\n", a, b, integrar (funcao_2, 7, a, b));
+    printf ("Integral da funcao 3 entre '%g' e '%g': %g\n", a, b, integrar (funcao_3, 7, a, b));
 
     return 0;
 }

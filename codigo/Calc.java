@@ -1,3 +1,5 @@
+package codigo;
+
 ////////////////////////////////////////////////
 // COMPILAÇÃO
 
@@ -6,7 +8,7 @@
 ////////////////////////////////////////////////
 // TERMOS
 
-class Termo 
+class Termo // necessário para valores mais complexos
 {
     // VARS
     private double multiplicativo = 1.0;
@@ -20,7 +22,7 @@ class Termo
     }
 
     // GETS
-    public double emX (double x)
+    public double emX (double x) // multiplicativo * x ^ potencia 
     {
         return  multiplicativo * Math.pow (x, potencia);
     }
@@ -41,7 +43,7 @@ class Funcao
     }
 
     // GETS
-    public double emX (double x)
+    public double emX (double x) // Pega o valor da função em X
     {
         double resp = 0.0;
 
@@ -49,7 +51,7 @@ class Funcao
 
         for (int i = 0; i < tam; i++)
         {
-            resp += termos [i].emX (x);
+            resp += termos [i].emX (x); // Para isto, ela soma todos os termos
         }
 
         return resp;
@@ -81,19 +83,46 @@ public class Calc
 {
     public static void main (String args [])
     {
-        Funcao func = new Funcao // Função X^2
+        Funcao funcao_1 = new Funcao // Função X + X^2
+        ( new Termo [] 
+            {
+                new Termo(1, 1), // x
+                new Termo(1, 2) // x^2
+            }
+        );
+
+        Funcao funcao_2 = new Funcao // Função X
+        ( new Termo [] 
+            {
+                new Termo(1, 1) // x
+            }
+        );
+
+        Funcao funcao_3 = new Funcao // Função X^2
         ( new Termo [] 
             {
                 new Termo(1, 2) // x^2
             }
         );
 
-        double a = 0, b = 1;
+        double a = 0, b = 10; // Inicio e fim
 
         System.out.println
         (
-            "Integral da função entre '" + a + "' e '" + b + 
-            "': " + func.integrar (7, a, b)
+            "Integral da função 1 entre '" + a + "' e '" + b + 
+            "': " + funcao_1.integrar (7, a, b)
+        );
+
+        System.out.println
+        (
+            "Integral da função 2 entre '" + a + "' e '" + b + 
+            "': " + funcao_2.integrar (7, a, b)
+        );
+
+        System.out.println
+        (
+            "Integral da função 3 entre '" + a + "' e '" + b + 
+            "': " + funcao_3.integrar (7, a, b)
         );
     }
 }
