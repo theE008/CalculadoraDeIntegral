@@ -7,6 +7,7 @@
 // BIBLIOTECAS
 
 #include <stdio.h>
+#include <math.h>
 
 ////////////////////////////////////////////////
 // DEFINIÇÕES
@@ -30,13 +31,13 @@ int potencia (int a, int b)
 
 double integrar (funcao f, int nivelDePrecisao, double a, double b)
 {
-    int N = potencia (10, nivelDePrecisao);
+    long long N = 1000000000; // 10000000
 
     double deltaX = (b - a) / N; // Largura que será usada nos retângulos
 
     double soma = 0; // Soma total da área
 
-    for (int i = 1; i <= N; i ++) // Anda por todo o gráfico
+    for (int i = 1; i < N; i ++) // Anda por todo o gráfico
     {
         double x = a + i * deltaX; // Pega a posição X do termo atual
         
@@ -52,17 +53,16 @@ double integrar (funcao f, int nivelDePrecisao, double a, double b)
 double funcao_1 (double x) { return (x + x*x);}   
 double funcao_2 (double x) { return (x);}   
 double funcao_3 (double x) { return (x*x);}   
+double funcao_4 (double x) { return (16/(sqrt (16 - x*x)));}
 
 ////////////////////////////////////////////////
 // MAIN
 
 int main (void)
 {
-    double a = 0, b = 10;
+    double a = 0, b = 4;
 
-    printf ("Integral da funcao 1 entre '%g' e '%g': %g\n", a, b, integrar (funcao_1, 7, a, b));
-    printf ("Integral da funcao 2 entre '%g' e '%g': %g\n", a, b, integrar (funcao_2, 7, a, b));
-    printf ("Integral da funcao 3 entre '%g' e '%g': %g\n", a, b, integrar (funcao_3, 7, a, b));
+    printf ("Integral da funcao 4 entre '%g' e '%g': %g\n", a, b, integrar (funcao_4, 7, a, b));
 
     return 0;
 }
